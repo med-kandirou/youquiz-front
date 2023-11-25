@@ -8,7 +8,7 @@ import { StudentSectionComponent } from './modules/admin/components/student-sect
 import { TrainerSectionComponent } from './modules/admin/components/trainer-section/trainer-section.component';
 import { LevelSectionComponent } from './modules/admin/components/level-section/level-section.component';
 import { QuestionSectionComponent } from './modules/admin/components/question-section/question-section.component';
-import { AllSectionComponent } from './modules/admin/components/all-section/all-section.component';
+import { StatistiqueSectionComponent } from './modules/admin/components/statistique-section/statistique-section.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +17,7 @@ import { AllSectionComponent } from './modules/admin/components/all-section/all-
     TrainerSectionComponent,
     LevelSectionComponent,
     QuestionSectionComponent,
-    AllSectionComponent
+    StatistiqueSectionComponent
   ],
   imports: [
     BrowserModule,
