@@ -27,7 +27,7 @@ export class LevelSectionComponent implements OnInit{
     this.levelService.delete(level_id).subscribe((data: Level) => {
       //this.level=data;
       console.log(data);
-      this.ngOnInit();
+      this.getLevels();
     });
   }
 }

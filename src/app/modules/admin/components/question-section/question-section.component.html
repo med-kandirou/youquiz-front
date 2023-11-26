@@ -12,6 +12,9 @@
                     Question
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Type
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Subject
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -37,10 +40,10 @@
                     {{ question.type }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ question.subject }}
+                    {{ question.subject.title }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ question.level }}
+                    {{ question.level.description }}
                 </td>
                 <td class="px-6 py-4">
                     <button (click)="deleteQuestion(question.id)" class="font-medium text-red-600 dark:text-blue-500 hover:underline"><i class="fas fa-trash mr-2"></i></button>
