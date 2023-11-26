@@ -22,4 +22,9 @@ export class LevelSectionComponent implements OnInit{
       console.log(this.levels);
     });
   }
+
+  deleteLevel(level_id: number) {
+    alert('Deleted'+level_id);
+    this.ngOnInit();
+  }
 }
