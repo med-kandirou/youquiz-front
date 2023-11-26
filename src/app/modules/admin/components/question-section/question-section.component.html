@@ -1,3 +1,52 @@
 <app-admin-dashboard>
-    <p>question-section works!</p>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Number responses
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Number correct responses
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Question
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Subject
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Level
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let question of questions" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ question.numberOfResponses }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ question.numberOfCorrectResponses }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ question.questionText }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ question.type }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ question.subject }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ question.level }}
+                </td>
+                <td class="px-6 py-4">
+                    <button (click)="deleteQuestion(question.id)" class="font-medium text-red-600 dark:text-blue-500 hover:underline"><i class="fas fa-trash mr-2"></i></button>
+                    <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fas fa-edit mr-2"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </app-admin-dashboard>
