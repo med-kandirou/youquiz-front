@@ -12,6 +12,7 @@ export class LevelSectionComponent implements OnInit{
 
   levels: Level[] = [];
 
+
   ngOnInit() {
    this.getLevels();
   }
@@ -19,12 +20,14 @@ export class LevelSectionComponent implements OnInit{
   getLevels(): void {
     this.levelService.getLevels().subscribe((data: Level[]) => {
       this.levels=data;
-      console.log(this.levels);
     });
   }
 
   deleteLevel(level_id: number) {
-    alert('Deleted'+level_id);
-    this.ngOnInit();
+    this.levelService.delete(level_id).subscribe((data: Level) => {
+      //this.level=data;
+      console.log(data);
+      this.ngOnInit();
+    });
   }
 }
