@@ -1,4 +1,4 @@
-export interface Student {
+export interface Trainer {
     matricule: number;
     firstName: string;
     lastName: string;
