@@ -11,6 +11,7 @@ import { StatistiqueSectionComponent } from './modules/admin/components/statisti
 import { SubjectSectionComponent } from './modules/admin/components/subject-section/subject-section.component';
 import { ResponseSectionComponent } from './modules/admin/components/response-section/response-section.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
