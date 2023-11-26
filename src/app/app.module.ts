@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminDashboardComponent } from './modules/admin/components/admin-dashboard/admin-dashboard.component';
@@ -9,6 +11,7 @@ import { TrainerSectionComponent } from './modules/admin/components/trainer-sect
 import { LevelSectionComponent } from './modules/admin/components/level-section/level-section.component';
 import { QuestionSectionComponent } from './modules/admin/components/question-section/question-section.component';
 import { StatistiqueSectionComponent } from './modules/admin/components/statistique-section/statistique-section.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,8 @@ import { StatistiqueSectionComponent } from './modules/admin/components/statisti
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
