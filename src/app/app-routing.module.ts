@@ -8,6 +8,7 @@ import { ResponseSectionComponent } from './modules/admin/components/response-se
 import { QuestionSectionComponent } from './modules/admin/components/question-section/question-section.component';
 import { MediaSectionComponent } from './modules/admin/components/media-section/media-section.component';
 const routes: Routes = [
+  { path : '', redirectTo : '/admin' , pathMatch: 'full'},
   { path: 'admin', component: StatistiqueSectionComponent},
   { path: 'admin/subject', component: SubjectSectionComponent},
   { path: 'admin/question', component: QuestionSectionComponent},
