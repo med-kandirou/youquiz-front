@@ -36,4 +36,25 @@ export class ResponseSectionComponent implements OnInit{
       this.getResponses(this.currentPage,this.currentSize);
     })
   }
+
+  paginate(page:number):void{
+    this.currentPage=page;
+    this.getResponses(page,this.currentSize)
+  }
+
+  nextPage(currentPage:number):void{
+    if(currentPage+1==this.totalPages){
+      return
+    }
+    this.currentPage=currentPage+1;
+    this.getResponses(this.currentPage,this.currentSize);
+  }
+
+  previousPage(currentPage:number){
+    if(currentPage==0){
+      return
+    }
+    this.currentPage=currentPage-1;
+    this.getResponses(this.currentPage,this.currentSize);
+  }
 }
