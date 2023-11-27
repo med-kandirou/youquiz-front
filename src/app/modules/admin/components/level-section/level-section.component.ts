@@ -12,7 +12,6 @@ export class LevelSectionComponent implements OnInit{
 
   levels: Level[] = [];
 
-
   ngOnInit() {
    this.getLevels();
   }
