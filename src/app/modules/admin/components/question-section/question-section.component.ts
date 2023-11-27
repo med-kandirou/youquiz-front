@@ -31,9 +31,23 @@ export class QuestionSectionComponent implements OnInit{
 
   deleteQuestion(question_id:number):void{
     this.service.delete(question_id).subscribe((data:Question)=>{
-      console.log(data);
       this.getQuestions(this.currentPage,this.currentSize);
     })
+  }
+
+  paginate(page:number):void{
+    this.currentPage=page;
+    this.getQuestions(page,this.currentSize)
+  }
+
+  nextPage(currentPage:number):void{
+    this.currentPage=currentPage+1;
+    this.getQuestions(this.currentPage,this.currentSize);
+  }
+
+  previousPage(currentPage:number){
+    this.currentPage=currentPage-1;
+    this.getQuestions(this.currentPage,this.currentSize);
   }
 
 }

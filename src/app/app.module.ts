@@ -10,6 +10,7 @@ import { QuestionSectionComponent } from './modules/admin/components/question-se
 import { StatistiqueSectionComponent } from './modules/admin/components/statistique-section/statistique-section.component';
 import { SubjectSectionComponent } from './modules/admin/components/subject-section/subject-section.component';
 import { ResponseSectionComponent } from './modules/admin/components/response-section/response-section.component';
+import { MediaSectionComponent } from './modules/admin/components/media-section/media-section.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ResponseSectionComponent } from './modules/admin/components/response-se
     QuestionSectionComponent,
     StatistiqueSectionComponent,
     SubjectSectionComponent,
-    ResponseSectionComponent
+    ResponseSectionComponent,
+    MediaSectionComponent
   ],
   imports: [
     BrowserModule,
