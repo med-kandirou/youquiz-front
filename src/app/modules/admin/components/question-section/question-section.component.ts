@@ -41,11 +41,17 @@ export class QuestionSectionComponent implements OnInit{
   }
 
   nextPage(currentPage:number):void{
+    if(currentPage+1==this.totalPages){
+      return
+    }
     this.currentPage=currentPage+1;
     this.getQuestions(this.currentPage,this.currentSize);
   }
 
   previousPage(currentPage:number){
+    if(currentPage==0){
+      return
+    }
     this.currentPage=currentPage-1;
     this.getQuestions(this.currentPage,this.currentSize);
   }
