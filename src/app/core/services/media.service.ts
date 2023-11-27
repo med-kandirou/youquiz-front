@@ -13,11 +13,11 @@ export class MediaService {
     constructor (private Http:HttpClient){}
 
     getMedias(page:number,size:number):Observable<Media[]>{
-        return this.Http.get<Media[]>(API_BASE_URL+`api/Media?page${page}&size${size}`,{ headers: { Accept: 'application/json' } });
+        return this.Http.get<Media[]>(API_BASE_URL+`/api/Media?page=${page}&size=${size}`,{ headers: { Accept: 'application/json' } });
     }
 
     delete(media_id:number):Observable<Media>{
-        return this.Http.delete<Media>(API_BASE_URL+`api/Media/${media_id}`,{ headers: { Accept: 'application/json' } });
+        return this.Http.delete<Media>(API_BASE_URL+`/api/Media/${media_id}`,{ headers: { Accept: 'application/json' } });
     }
 
 }

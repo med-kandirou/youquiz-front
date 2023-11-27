@@ -10,14 +10,15 @@ import { MediaService } from 'src/app/core/services/media.service';
 export class MediaSectionComponent implements OnInit{
   constructor (private service : MediaService){}
 
+  
+  currentPage: number=0;
+  currentSize: number=3;
+  totalPages: number=0;
 
   ngOnInit(): void {
     this.getAll(this.currentPage,this.currentSize);
   }
 
-  currentPage: number=0;
-  currentSize: number=3;
-  totalPages: number=0;
 
   medias:Media[]=[] 
 
@@ -28,7 +29,7 @@ export class MediaSectionComponent implements OnInit{
     });
   }
 
-  delete(media_id:number):void{
+  deleteMedia(media_id:number):void{
     this.service.delete(media_id).subscribe((data:any)=>{
       console.log(data);
       this.getAll(this.currentPage,this.currentSize);
