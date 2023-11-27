@@ -11,6 +11,7 @@ import { StatistiqueSectionComponent } from './modules/admin/components/statisti
 import { SubjectSectionComponent } from './modules/admin/components/subject-section/subject-section.component';
 import { ResponseSectionComponent } from './modules/admin/components/response-section/response-section.component';
 import { MediaSectionComponent } from './modules/admin/components/media-section/media-section.component';
+import { ConfirmationComponent } from './core/shared/components/confirmation/confirmation.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MediaSectionComponent } from './modules/admin/components/media-section/
     StatistiqueSectionComponent,
     SubjectSectionComponent,
     ResponseSectionComponent,
-    MediaSectionComponent
+    MediaSectionComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

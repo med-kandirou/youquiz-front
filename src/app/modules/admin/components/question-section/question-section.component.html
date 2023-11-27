@@ -49,7 +49,7 @@
                                     {{ question.level.description }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <button (click)="deleteQuestion(question.id)" class="font-medium text-red-600 dark:text-blue-500 hover:underline"><i class="fas fa-trash mr-2"></i></button>
+                                    <button type="button" class="font-medium text-red-600 dark:text-blue-500 hover:underline" (click)="getIdtoDelete(question.id)"><i class="fas fa-trash mr-2"></i></button>
                                     <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fas fa-edit mr-2"></i></button>
                                 </td>
                             </tr>
@@ -57,9 +57,9 @@
                     </table>
                 </div>
                 <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
-                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                         Current Page : 
-                        <span class="font-semibold text-gray-900 dark:text-white">{{ currentPage+1 }}</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">{{ currentPage+1 }}</span>
                     </span>
                     <ul class="inline-flex items-stretch -space-x-px">
                         <li>
@@ -87,4 +87,8 @@
                 </nav>
             </div>
         </div>
+
+
+        <!-- <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Toggle modal</button> -->
+        <app-confirmation *ngIf="isVisible" (ConfirmDelete)="receiveData($event)"></app-confirmation>
 </app-admin-dashboard>

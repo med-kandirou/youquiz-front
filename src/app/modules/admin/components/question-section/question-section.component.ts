@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Question } from 'src/app/core/models/Question.model';
 import { QuestionService } from 'src/app/core/services/question.service';
+import { ConfirmationComponent } from 'src/app/core/shared/components/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-question-section',
@@ -8,6 +9,7 @@ import { QuestionService } from 'src/app/core/services/question.service';
   styleUrls: ['./question-section.component.css']
 })
 export class QuestionSectionComponent implements OnInit{
+  isVisible: Boolean=false;
 
   constructor(private service:QuestionService){}
 
@@ -29,10 +31,24 @@ export class QuestionSectionComponent implements OnInit{
     })
   }
 
+  idtoDelete:number=0;
+
   deleteQuestion(question_id:number):void{
     this.service.delete(question_id).subscribe((data:Question)=>{
       this.getQuestions(this.currentPage,this.currentSize);
     })
+  }
+
+  getIdtoDelete(question_id:number){
+    this.isVisible=true;
+    this.idtoDelete=question_id;
+    console.log(question_id);
+  }
+
+  receiveData(data:boolean):void{
+    this.isVisible=false;
+    console.log(data);
+    this.deleteQuestion(this.idtoDelete);
   }
 
   paginate(page:number):void{
