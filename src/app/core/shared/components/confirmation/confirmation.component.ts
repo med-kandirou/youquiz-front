@@ -7,13 +7,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ConfirmationComponent {
 
-  @Output() ConfirmDelete = new EventEmitter<boolean>();
+  @Output() ConfirmDelete = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
 
-  sendData() {;
-    this.ConfirmDelete.emit(true);
+  sendData() {
+    this.ConfirmDelete.emit();
   }
 
-  close() {
-    throw new Error('Method not implemented.');
+  closeModal(){
+    this.close.emit();
   }
 }

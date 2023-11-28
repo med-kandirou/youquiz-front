@@ -9,6 +9,7 @@ import { ConfirmationComponent } from 'src/app/core/shared/components/confirmati
   styleUrls: ['./question-section.component.css']
 })
 export class QuestionSectionComponent implements OnInit{
+
   isVisible: Boolean=false;
 
   constructor(private service:QuestionService){}
@@ -44,9 +45,8 @@ export class QuestionSectionComponent implements OnInit{
     console.log(question_id);
   }
 
-  receiveData(data:boolean):void{
+  receiveData():void{
     this.isVisible=false;
-    console.log(data);
     this.deleteQuestion(this.idtoDelete);
   }
 
@@ -69,6 +69,10 @@ export class QuestionSectionComponent implements OnInit{
     }
     this.currentPage=currentPage-1;
     this.getQuestions(this.currentPage,this.currentSize);
+  }
+
+  closeModal() {
+    this.isVisible=false;
   }
 
 }
