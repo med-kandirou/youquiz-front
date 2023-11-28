@@ -16,6 +16,8 @@ export class ResponseSectionComponent implements OnInit{
   currentPage: number=0;
   currentSize: number=3;
   totalPages: number=0;
+  isVisible: Boolean=false;
+  idtoDelete:number=0;
 
   ngOnInit(): void {
     this.getResponses(this.currentPage,this.currentSize);
@@ -30,11 +32,22 @@ export class ResponseSectionComponent implements OnInit{
     })
   }
 
+
   deleteResponse(response_id:number):void{
     this.service.delete(response_id).subscribe((data:any)=>{
-      console.log(data);
       this.getResponses(this.currentPage,this.currentSize);
     })
+  }
+
+  getIdtoDelete(question_id:number){
+    this.isVisible=true;
+    this.idtoDelete=question_id;
+    console.log(question_id);
+  }
+
+  receiveData():void{
+    this.isVisible=false;
+    this.deleteResponse(this.idtoDelete);
   }
 
   paginate(page:number):void{
@@ -56,5 +69,8 @@ export class ResponseSectionComponent implements OnInit{
     }
     this.currentPage=currentPage-1;
     this.getResponses(this.currentPage,this.currentSize);
+  }
+  closeModal() {
+    this.isVisible=false;
   }
 }

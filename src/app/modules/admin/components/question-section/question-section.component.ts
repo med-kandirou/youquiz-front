@@ -10,13 +10,14 @@ import { ConfirmationComponent } from 'src/app/core/shared/components/confirmati
 })
 export class QuestionSectionComponent implements OnInit{
 
-  isVisible: Boolean=false;
 
   constructor(private service:QuestionService){}
 
   currentPage: number=0;
   currentSize: number=3;
   totalPages: number=0;
+  isVisible: Boolean=false;
+  idtoDelete:number=0;
 
   ngOnInit(): void {
     this.getQuestions(this.currentPage,this.currentSize);
@@ -31,7 +32,7 @@ export class QuestionSectionComponent implements OnInit{
     })
   }
 
-  idtoDelete:number=0;
+  
 
   deleteQuestion(question_id:number):void{
     this.service.delete(question_id).subscribe((data:Question)=>{
@@ -42,7 +43,6 @@ export class QuestionSectionComponent implements OnInit{
   getIdtoDelete(question_id:number){
     this.isVisible=true;
     this.idtoDelete=question_id;
-    console.log(question_id);
   }
 
   receiveData():void{
