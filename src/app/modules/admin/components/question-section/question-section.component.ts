@@ -27,7 +27,6 @@ export class QuestionSectionComponent implements OnInit{
     this.service.getQuestions(page,size).subscribe((data:any)=>{
       this.totalPages=data.totalPages;
       this.questions=data.content;
-      console.log(data.content);
     })
   }
 
