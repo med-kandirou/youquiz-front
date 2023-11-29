@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Question } from 'src/app/core/models/Question.model';
 import { QuestionService } from 'src/app/core/services/question.service';
-import { ConfirmationComponent } from 'src/app/core/shared/components/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-question-section',

@@ -13,6 +13,7 @@ import { ResponseSectionComponent } from './modules/admin/components/response-se
 import { MediaSectionComponent } from './modules/admin/components/media-section/media-section.component';
 import { ConfirmationComponent } from './core/shared/components/confirmation/confirmation.component';
 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ConfirmationComponent } from './core/shared/components/confirmation/con
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

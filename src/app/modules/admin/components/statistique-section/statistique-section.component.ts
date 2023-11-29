@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./statistique-section.component.css']
 })
 export class StatistiqueSectionComponent {
-
+  name:String='sun Test'
 }
