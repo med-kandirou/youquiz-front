@@ -7,6 +7,9 @@ import { API_BASE_URL } from './api.config';
   providedIn: 'root'
 })
 export class ResponseService {
+  getOne(response_id: number) {
+    return this.http.get<Response>(API_BASE_URL+`/api/Response/${response_id}`, { headers: { Accept: 'application/json' } });
+  }
 
   constructor(private http:HttpClient) { }
 

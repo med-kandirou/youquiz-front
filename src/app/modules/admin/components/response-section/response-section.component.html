@@ -20,7 +20,7 @@
                             </th>
                             <td class="px-6 py-4">
                                 <button type="button" class="font-medium text-red-600 dark:text-blue-500 hover:underline" (click)="getIdtoDelete(res.id)"><i class="fas fa-trash mr-2"></i></button>
-                                <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fas fa-edit mr-2"></i></button>
+                                <button data-dial-init data-modal-target="save-response-modal" data-modal-toggle="save-response-modal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" (click)="getOne(res.id)"><i class="fas fa-edit mr-2"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -69,6 +69,6 @@
             <span class="sr-only">Open actions menu</span>
         </button>
     </div>
-    <app-save-response></app-save-response>
+    <app-save-response [responseForm]="responseForm"></app-save-response>
 
 </app-admin-dashboard>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResponseService } from 'src/app/core/services/response.service';
 import { Response } from 'src/app/core/models/Response.model';
@@ -11,18 +11,12 @@ import Swal from 'sweetalert2';
 })
 export class SaveResponseComponent implements OnInit{
 
-  responseForm: FormGroup =this.fb.group({});
+  @Input()
+  responseForm!: FormGroup;
 
   constructor(private fb: FormBuilder,private serviceResponse:ResponseService) {}
   ngOnInit(): void {
-    this.initForm();
-  }
-
-
-  private initForm() {
-    this.responseForm = this.fb.group({
-      textResponse: ['', Validators.required],
-    });
+    
   }
 
   onSubmit() {

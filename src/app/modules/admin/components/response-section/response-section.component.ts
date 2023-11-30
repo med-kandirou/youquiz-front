@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Response } from 'src/app/core/models/Response.model';
 import { ResponseService } from 'src/app/core/services/response.service';
 
@@ -11,19 +12,37 @@ import { ResponseService } from 'src/app/core/services/response.service';
 })
 export class ResponseSectionComponent implements OnInit{
 
-  constructor(private service:ResponseService){}
+  constructor(private service:ResponseService,private fb:FormBuilder){}
 
   currentPage: number=0;
   currentSize: number=3;
   totalPages: number=0;
   isVisible: Boolean=false;
   idtoDelete:number=0;
+  responseForm!: FormGroup;
 
   ngOnInit(): void {
+    this.initform();
     this.getResponses(this.currentPage,this.currentSize);
   }
 
+  initform():void{
+    this.responseForm=this.fb.group({
+      id: [0],
+      textResponse: [null, [Validators.required, Validators.min(0)]],
+    });
+  }
+
   responses:Response[]=[]
+
+  getOne(response_id: number) {
+    this.service.getOne(response_id).subscribe((data:any)=>{
+      this.responseForm=this.fb.group({
+        id: [data.id],
+        textResponse: [data.textResponse, [Validators.required, Validators.min(0)]],
+      });
+    })
+  }    
 
   getResponses(page:number,size:number):void{
     this.service.getResponses(page,size).subscribe((data:any)=>{
