@@ -18,4 +18,8 @@ export class ResponseService {
   delete(Response_id:number): Observable<Response> {
     return this.http.delete<Response>(API_BASE_URL+`/api/Response/${Response_id}`, { headers: { Accept: 'application/json' } });
   }
+
+  save(form:FormData): Observable<Response> {
+    return this.http.post<Response>(API_BASE_URL+`/api/Response`, form,{ headers: { Accept: 'application/json' } });
+  }
 }

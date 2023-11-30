@@ -14,7 +14,9 @@ import { MediaSectionComponent } from './modules/admin/components/media-section/
 import { ConfirmationComponent } from './core/shared/components/confirmation/confirmation.component';
 
 import { FormsModule } from '@angular/forms';
-
+import { SaveQuestionComponent } from './core/shared/components/save-question/save-question.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SaveResponseComponent } from './core/shared/components/save-response/save-response.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,13 +27,16 @@ import { FormsModule } from '@angular/forms';
     SubjectSectionComponent,
     ResponseSectionComponent,
     MediaSectionComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    SaveQuestionComponent,
+    SaveResponseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

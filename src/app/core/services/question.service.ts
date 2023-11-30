@@ -19,4 +19,8 @@ export class QuestionService {
   delete(question_id:number): Observable<Question> {
     return this.http.delete<Question>(API_BASE_URL+`/api/Question/${question_id}`, { headers: { Accept: 'application/json' } });
   }
+
+  save(form:FormData): Observable<Question> {
+    return this.http.post<Question>(API_BASE_URL+`/api/Question`,form ,{ headers: { Accept: 'application/json' } });
+  }
 }
