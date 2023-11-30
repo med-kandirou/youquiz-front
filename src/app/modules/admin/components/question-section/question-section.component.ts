@@ -52,7 +52,6 @@ export class QuestionSectionComponent implements OnInit{
         level_id: [data.level.id, Validators.required],
       });
     })
-
   }
     
 
