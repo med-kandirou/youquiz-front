@@ -1,4 +1,6 @@
 import { Component,OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { Question } from 'src/app/core/models/Question.model';
 import { QuestionService } from 'src/app/core/services/question.service';
 
@@ -10,19 +12,50 @@ import { QuestionService } from 'src/app/core/services/question.service';
 export class QuestionSectionComponent implements OnInit{
 
 
-  constructor(private service:QuestionService){}
+  constructor(private service:QuestionService,private fb:FormBuilder){}
 
   currentPage: number=0;
   currentSize: number=3;
   totalPages: number=0;
   isVisible: Boolean=false;
   idtoDelete:number=0;
+  questionForm!: FormGroup;
 
   ngOnInit(): void {
+    this.initform();
     this.getQuestions(this.currentPage,this.currentSize);
   }
 
   questions:Question[]=[]
+
+  initform():void{
+    this.questionForm=this.fb.group({
+      id: [0],
+      numberOfResponses: [null, [Validators.required, Validators.min(0)]],
+      numberOfCorrectResponses: [null, [Validators.required, Validators.min(0)]],
+      questionText: ['', Validators.required],
+      type: ['', Validators.required],
+      subject_id: ['', Validators.required],
+      level_id: ['', Validators.required],
+    });
+  }
+
+  getOne(question_id:number):void{
+    this.service.getOne(question_id).subscribe((data:Question)=>{
+      this.questionForm=this.fb.group({
+        id: [data.id],
+        numberOfResponses: [data.numberOfResponses, [Validators.required, Validators.min(0)]],
+        numberOfCorrectResponses: [data.numberOfCorrectResponses, [Validators.required, Validators.min(0)]],
+        questionText: [data.questionText, Validators.required],
+        type: [data.type, Validators.required],
+        subject_id: [data.subject.id, Validators.required],
+        level_id: [data.level.id, Validators.required],
+      });
+    })
+
+  }
+    
+
 
   getQuestions(page:number,size:number):void{
     this.service.getQuestions(page,size).subscribe((data:any)=>{
@@ -32,7 +65,6 @@ export class QuestionSectionComponent implements OnInit{
   }
 
   
-
   deleteQuestion(question_id:number):void{
     this.service.delete(question_id).subscribe((data:Question)=>{
       this.getQuestions(this.currentPage,this.currentSize);
@@ -73,5 +105,7 @@ export class QuestionSectionComponent implements OnInit{
   closeModal() {
     this.isVisible=false;
   }
+
+  
 
 }

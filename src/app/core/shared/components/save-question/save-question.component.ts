@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Level } from 'src/app/core/models/Level.model';
 import { Question } from 'src/app/core/models/Question.model';
 import { Subject } from 'src/app/core/models/Subject.model';
@@ -14,15 +14,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./save-question.component.css']
 })
 export class SaveQuestionComponent {
-  questionForm: FormGroup =this.fb.group({});
 
   constructor(private fb: FormBuilder,private levelService:LevelService,private subjectService:SubjectService,private serviceQuestion:QuestionService) {}
 
   levels:Level[]=[]
   subjects:Subject[]=[]
+  @Input() questionForm!: FormGroup;
+  
 
   ngOnInit() {
-    this.initForm();
     this.levelService.getLevels().subscribe((data:Level[])=>{
       this.levels=data;
     })
@@ -31,28 +31,18 @@ export class SaveQuestionComponent {
     })
   }
 
-  private initForm() {
-    this.questionForm = this.fb.group({
-      numberOfResponses: [null, [Validators.required, Validators.min(0)]],
-      numberOfCorrectResponses: [null, [Validators.required, Validators.min(0)]],
-      questionText: ['', Validators.required],
-      type: ['', Validators.required],
-      subject_id: ['', Validators.required],
-      level_id: ['', Validators.required],
-    });
-  }
-
+  
   onSubmit() {
     if (this.questionForm.valid) {
-      const formData: FormData = this.questionForm.value;
-      this.serviceQuestion.save(formData).subscribe((data:Question)=>{
-        Swal.fire({
-          title: "succes",
-          text: `${data.questionText} ajouté`,
-          icon: "success"
+      const formData: FormGroup = this.questionForm.value;
+      console.log(formData);
+        this.serviceQuestion.save(formData).subscribe((data:Question)=>{
+          Swal.fire({
+            title: "succes",
+            text: `${data.questionText} ajouté`,
+            icon: "success"
+          });
         });
-      });
-    
     } else {
       console.log("log");
     }

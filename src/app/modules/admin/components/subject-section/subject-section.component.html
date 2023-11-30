@@ -22,8 +22,11 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ sub.title }}
                     </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ sub.parent.title }}
+                    <th *ngIf="sub.parent==null" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        no parent
+                    </th>
+                    <th *ngIf="sub.parent!=null" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                         {{ sub.parent.title }}
                     </th>
                     <td class="px-6 py-4">
                         <button (click)="deleteSubject(sub.id)" class="font-medium text-red-600 dark:text-blue-500 hover:underline"><i class="fas fa-trash mr-2"></i></button>
