@@ -9,6 +9,9 @@ import { API_BASE_URL } from "./api.config";
     providedIn: 'root'
 })
 export class MediaService {
+    getOne(level_id: number) {
+        return this.Http.get<Media>(API_BASE_URL+`/api/Media${level_id}`,{ headers: { Accept: 'application/json' } });
+    }
 
     constructor (private Http:HttpClient){}
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Media } from 'src/app/core/models/Media.model';
 import { MediaService } from 'src/app/core/services/media.service';
 
@@ -8,17 +9,17 @@ import { MediaService } from 'src/app/core/services/media.service';
   styleUrls: ['./media-section.component.css']
 })
 export class MediaSectionComponent implements OnInit{
-  constructor (private service : MediaService){}
+  constructor (private service : MediaService,private fb : FormBuilder){}
 
   
   currentPage: number=0;
   currentSize: number=3;
   totalPages: number=0;
-
   ngOnInit(): void {
     this.getAll(this.currentPage,this.currentSize);
   }
 
+  
 
   medias:Media[]=[] 
 
