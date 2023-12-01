@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SaveResponseComponent } from './core/shared/components/save-response/save-response.component';
 import { SaveLevelComponent } from './core/shared/components/save-level/save-level.component';
 import { SaveSubjectComponent } from './core/shared/components/save-subject/save-subject.component';
+import { SaveMediaComponent } from './core/shared/components/save-media/save-media.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SaveSubjectComponent } from './core/shared/components/save-subject/save
     SaveQuestionComponent,
     SaveResponseComponent,
     SaveLevelComponent,
-    SaveSubjectComponent
+    SaveSubjectComponent,
+    SaveMediaComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,9 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class QuestionService {
+  all() {
+    return this.http.get<Question[]>(API_BASE_URL+`/api/Question/all`, { headers: { Accept: 'application/json' } });
+  }
 
   update(form: FormGroup) {
     return this.http.put<Question>(API_BASE_URL+`/api/Question`,form ,{ headers: { Accept: 'application/json' } });

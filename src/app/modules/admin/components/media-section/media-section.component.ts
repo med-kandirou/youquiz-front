@@ -15,13 +15,36 @@ export class MediaSectionComponent implements OnInit{
   currentPage: number=0;
   currentSize: number=3;
   totalPages: number=0;
+  medias:Media[]=[] 
+  mediaForm!:FormGroup;
   ngOnInit(): void {
+    this.initform();
     this.getAll(this.currentPage,this.currentSize);
+  }
+
+  initform():void{
+    this.mediaForm=this.fb.group({
+        id: [0],
+        src: [null, [Validators.required]],
+        mediaType: [null, [Validators.required]],
+        question_id: [null, Validators.required],
+    });
+  }
+
+  getOne(question_id:number):void{
+    this.service.getOne(question_id).subscribe((data:Media)=>{
+      this.mediaForm=this.fb.group({
+        id: [data.id],
+        src: [data.src, [Validators.required]],
+        mediaType: [data.mediaType, [Validators.required]],
+        question_id: [data.question.questionText, Validators.required],
+      });
+    })
   }
 
   
 
-  medias:Media[]=[] 
+  
 
   getAll(page:number,size:number):void{
     this.service.getMedias(page,size).subscribe((data:any)=>{
