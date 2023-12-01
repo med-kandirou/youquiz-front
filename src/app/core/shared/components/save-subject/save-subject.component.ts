@@ -37,7 +37,7 @@ export class SaveSubjectComponent {
           });
         });
     } else {
-      console.log("log");
+      console.log("errors");
     }
   }
 }
