@@ -7,6 +7,12 @@ import { LevelSectionComponent } from './modules/admin/components/level-section/
 import { ResponseSectionComponent } from './modules/admin/components/response-section/response-section.component';
 import { QuestionSectionComponent } from './modules/admin/components/question-section/question-section.component';
 import { MediaSectionComponent } from './modules/admin/components/media-section/media-section.component';
+import { StatistiqueStudentComponent } from './modules/student/components/statistique-student/statistique-student.component';
+import { AssignmentStudentComponent } from './modules/student/components/assignment-student/assignment-student.component';
+import { ResultStudentComponent } from './modules/student/components/result-student/result-student.component';
+
+
+
 const routes: Routes = [
   { path : '', redirectTo : '/admin' , pathMatch: 'full'},
   { path: 'admin', component: QuestionSectionComponent},
@@ -15,6 +21,9 @@ const routes: Routes = [
   { path: 'admin/response', component: ResponseSectionComponent},
   { path: 'admin/level', component: LevelSectionComponent},
   { path: 'admin/media', component: MediaSectionComponent},
+  { path: 'student', component: StatistiqueStudentComponent},
+  { path: 'student/assignement', component: AssignmentStudentComponent},
+  { path: 'student/results', component: ResultStudentComponent},
 ];
 
 @NgModule({

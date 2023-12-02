@@ -1,0 +1,58 @@
+<app-navbar-student></app-navbar-student>
+        <div class="relative overflow-x-auto sm:rounded-lg">
+            <table class="w-96 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Start
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            End
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Success score
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            numberOfChances
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            remarks
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Trainer
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Pass
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let assig of assignements" class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{assig.dateStart}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{assig.dateEnd}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{assig.test.successScore}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{assig.test.numberOfChances}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{assig.test.remarks}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{assig.test.trainer.firstName}}  {{assig.test.trainer.lastName}}
+                        </td>
+                        <td class="px-6 py-4" *ngIf="checkDate(assig)==true">
+                            Pass
+                        </td>
+                        <td class="px-6 py-4" *ngIf="checkDate(assig)==false">
+                            Not available
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>

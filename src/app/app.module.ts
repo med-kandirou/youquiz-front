@@ -20,6 +20,11 @@ import { SaveResponseComponent } from './core/shared/components/save-response/sa
 import { SaveLevelComponent } from './core/shared/components/save-level/save-level.component';
 import { SaveSubjectComponent } from './core/shared/components/save-subject/save-subject.component';
 import { SaveMediaComponent } from './core/shared/components/save-media/save-media.component';
+import { NavbarStudentComponent } from './modules/student/components/navbar-student/navbar-student.component';
+import { AssignmentStudentComponent } from './modules/student/components/assignment-student/assignment-student.component';
+import { StatistiqueStudentComponent } from './modules/student/components/statistique-student/statistique-student.component';
+import { ResultStudentComponent } from './modules/student/components/result-student/result-student.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +41,11 @@ import { SaveMediaComponent } from './core/shared/components/save-media/save-med
     SaveResponseComponent,
     SaveLevelComponent,
     SaveSubjectComponent,
-    SaveMediaComponent
+    SaveMediaComponent,
+    NavbarStudentComponent,
+    AssignmentStudentComponent,
+    StatistiqueStudentComponent,
+    ResultStudentComponent
   ],
   imports: [
     BrowserModule,
