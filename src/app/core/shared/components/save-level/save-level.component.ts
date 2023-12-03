@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Level } from 'src/app/core/models/Level.model';
 import { LevelService } from 'src/app/core/services/level.service';
 import Swal from 'sweetalert2';
@@ -13,7 +13,11 @@ export class SaveLevelComponent {
   constructor(private serviceLevel: LevelService) {}
 
   @Input() levelForm!: FormGroup;
-  
+  @Output() close = new EventEmitter<void>();
+
+  closeModel():void{
+    this.close.emit();
+  }
 
 
   onSubmit() {
@@ -27,6 +31,7 @@ export class SaveLevelComponent {
             icon: "success"
           });
         });
+        this.closeModel();
     } else {
       console.log("log");
     }

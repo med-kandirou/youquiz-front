@@ -20,6 +20,7 @@ export class ResponseSectionComponent implements OnInit{
   isVisible: Boolean=false;
   idtoDelete:number=0;
   responseForm!: FormGroup;
+  isFormVisible: Boolean=false;
 
   ngOnInit(): void {
     this.initform();
@@ -42,6 +43,7 @@ export class ResponseSectionComponent implements OnInit{
         textResponse: [data.textResponse, [Validators.required, Validators.min(0)]],
       });
     })
+    this.isFormVisible=true;
   }    
 
   getResponses(page:number,size:number):void{

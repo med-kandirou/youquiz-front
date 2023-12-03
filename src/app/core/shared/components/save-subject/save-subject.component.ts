@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Question } from 'src/app/core/models/Question.model';
 import { Subject } from 'src/app/core/models/Subject.model';
@@ -24,6 +24,11 @@ export class SaveSubjectComponent {
     })
   }
 
+  @Output() close = new EventEmitter<void>();
+
+  closeModel():void{
+    this.close.emit();
+  }
   
   onSubmit() {
     if (this.subjectForm.valid) {
@@ -36,6 +41,7 @@ export class SaveSubjectComponent {
             icon: "success"
           });
         });
+        this.closeModel();
     } else {
       console.log("errors");
     }

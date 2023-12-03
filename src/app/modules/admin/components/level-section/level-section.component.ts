@@ -14,6 +14,7 @@ export class LevelSectionComponent implements OnInit{
 
   levels: Level[] = [];
   levelForm!: FormGroup;
+  isFormVisible: Boolean=false;
   ngOnInit() {
    this.getLevels();
    this.initform();
@@ -37,6 +38,7 @@ export class LevelSectionComponent implements OnInit{
         pointMax: [data.pointMax, [Validators.required, Validators.min(0)]]
       });
     })
+    this.isFormVisible=true;
   }
 
   getLevels(): void {
@@ -47,8 +49,6 @@ export class LevelSectionComponent implements OnInit{
 
   deleteLevel(level_id: number) {
     this.levelService.delete(level_id).subscribe((data: Level) => {
-      //this.level=data;
-      console.log(data);
       this.getLevels();
     });
   }

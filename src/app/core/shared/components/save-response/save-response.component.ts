@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResponseService } from 'src/app/core/services/response.service';
 import { Response } from 'src/app/core/models/Response.model';
@@ -13,11 +13,15 @@ export class SaveResponseComponent implements OnInit{
 
   @Input()
   responseForm!: FormGroup;
+  @Output() close = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder,private serviceResponse:ResponseService) {}
-  ngOnInit(): void {
-    
+  closeModel():void{
+    this.close.emit();
   }
+
+  constructor(private serviceResponse:ResponseService) {}
+  ngOnInit(): void { }
+
 
   onSubmit() {
     if (this.responseForm.valid) {
@@ -30,6 +34,7 @@ export class SaveResponseComponent implements OnInit{
           icon: "success"
         });
       });
+      this.closeModel()
     } else {
       console.log("log");
     }

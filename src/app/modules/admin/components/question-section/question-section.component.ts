@@ -18,6 +18,7 @@ export class QuestionSectionComponent implements OnInit{
   currentSize: number=3;
   totalPages: number=0;
   isVisible: Boolean=false;
+  isFormVisible: Boolean=false;
   idtoDelete:number=0;
   questionForm!: FormGroup;
 
@@ -52,6 +53,7 @@ export class QuestionSectionComponent implements OnInit{
         level_id: [data.level.id, Validators.required],
       });
     })
+    this.isFormVisible=true;
   }
     
 

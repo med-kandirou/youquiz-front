@@ -19,6 +19,7 @@ export class SubjectSectionComponent implements OnInit{
 
   subjects:Subject[]=[]
   subjectForm!:FormGroup
+  isFormVisible: Boolean=false;
 
   initform():void{
     this.subjectForm=this.fb.group({
@@ -36,6 +37,7 @@ export class SubjectSectionComponent implements OnInit{
         parent_id: [data.parent?.id ?? null]
       });
     })
+    this.isFormVisible=true;
   }
 
   getSubjects():void{
