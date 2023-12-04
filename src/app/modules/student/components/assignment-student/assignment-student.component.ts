@@ -18,6 +18,7 @@ export class AssignmentStudentComponent implements OnInit{
   getAssigbyStudent(student_id:number){
     this.assiService.getByStudent(student_id).subscribe((data:Assignment[])=>{
       this.assignements=data;
+      console.log(new Date("2024-11-16T00:00:00").toLocaleTimeString())
     })
   }
 
