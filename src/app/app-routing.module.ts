@@ -11,7 +11,7 @@ import { StatistiqueStudentComponent } from './modules/student/components/statis
 import { AssignmentStudentComponent } from './modules/student/components/assignment-student/assignment-student.component';
 import { ResultStudentComponent } from './modules/student/components/result-student/result-student.component';
 
-
+import { QuizStudentComponent } from './modules/student/components/quiz-student/quiz-student.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/admin' , pathMatch: 'full'},
@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'student', component: StatistiqueStudentComponent},
   { path: 'student/assignement', component: AssignmentStudentComponent},
   { path: 'student/results', component: ResultStudentComponent},
+  { path: 'student/quiz', component: QuizStudentComponent},
 ];
 
 @NgModule({
