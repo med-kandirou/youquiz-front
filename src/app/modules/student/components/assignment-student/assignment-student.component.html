@@ -1,7 +1,7 @@
 <app-navbar-student></app-navbar-student>
-        <div class="relative overflow-x-auto sm:rounded-lg">
-            <table class="w-96 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div class="flex justify-center items-center h-screen">
+            <table class="w-11/12 text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
+                <thead class="text-xs text-gray-800 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Start
@@ -47,7 +47,7 @@
                             {{assig.test.trainer.firstName}}  {{assig.test.trainer.lastName}}
                         </td>
                         <td class="px-6 py-4" *ngIf="checkDate(assig)==true">
-                            Pass
+                            <a href="#">pass</a>
                         </td>
                         <td class="px-6 py-4" *ngIf="checkDate(assig)==false">
                             Not available
