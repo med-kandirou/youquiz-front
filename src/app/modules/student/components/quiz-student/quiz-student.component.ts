@@ -34,6 +34,7 @@ export class QuizStudentComponent implements OnInit{
     this.tempoService.getByTest(question_id).subscribe((data:Temporisation[])=>{
       this.temporisations=data;
       this.currentTemporidsation=this.temporisations[this.index];
+      
     })
   }
 
@@ -53,6 +54,19 @@ export class QuizStudentComponent implements OnInit{
     this.validationServ.getByQuestion(question_id).subscribe((data:Validation[])=>{
       this.validations=data;
     })
+    this.startTimer(this.currentTemporidsation.time);
   }
-  
+
+  restOftime:number;
+  startTimer(time:number) {
+    this.restOftime=time*60
+      setInterval(() => {
+        if(this.restOftime > 0) {
+          this.restOftime--;
+        }
+        else if(this.restOftime == 0) {
+          this.restOftime==0;
+        }
+      },1500)
+  }
 }
