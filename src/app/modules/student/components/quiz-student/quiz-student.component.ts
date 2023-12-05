@@ -11,6 +11,7 @@ import { Validation } from 'src/app/core/models/Validation.model';
   styleUrls: ['./quiz-student.component.css']
 })
 export class QuizStudentComponent implements OnInit{
+
   temporisations:Temporisation[]=[]
   validations:Validation[]=[]
   currentTemporidsation:Temporisation
@@ -22,6 +23,17 @@ export class QuizStudentComponent implements OnInit{
   ngOnInit(): void {
     this.getTemorisationbytest(1);
   }
+  totalpoint:number=0; 
+  selectResponse(question_id: number, response_id: number) {
+    let validation = this.validations.find(item =>
+      item.question && item.response &&
+      item.question.id === question_id && item.response.id === response_id
+    );
+    document.getElementById(response_id.toString())?.classList.add("bg-slate-300");
+    console.log("test");
+  }
+  
+    
 
   getTemorisationbytest(test_id:number){
     this.tempoService.getByTest(test_id).subscribe((data:Temporisation[])=>{
@@ -70,4 +82,6 @@ export class QuizStudentComponent implements OnInit{
         }
       },1500)
   }
+
+
 }

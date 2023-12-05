@@ -7,13 +7,12 @@
         <div class="bg-white p-12 rounded-lg shadow-lg w-full mt-8">
           <p class="bg-green-400 w-max p-2 text-white text-center text-sm font-bold tracking-wide rounded-full mb-6">Time : {{restOftime}}</p>
           <div>
-            <p class="text-2xl font-bold">{{currentTemporidsation.question.questionText}}</p>
+            <p class="text-2xl font-bold mb-3">{{currentTemporidsation.question.questionText}}</p>
             <div class="grid grid-cols-2 gap-2">
-              <div *ngFor="let val of validations" class="flex items-center justify-center">
-                <label for="answer" class="mt-4 text-center border border-gray-300 rounded-lg py-1 px-6 text-lg h-full w-60 flex items-center justify-center">
-                  <input type="radio" id="answer" class="hidden" value="1" />
+              <div *ngFor="let val of validations" class="flex items-center justify-center ">
+                <button [id]="val.response.id" class="mt-4 text-center border border-gray-300 rounded-lg py-1 px-6 text-lg h-full w-60 flex items-center justify-center" (click)="selectResponse(currentTemporidsation.question.id,val.response.id)">
                   {{val.response.textResponse}}
-                </label>
+                </button>
               </div>
             </div>
             <div class="mt-6 flow-root">
@@ -29,5 +28,4 @@
         </div>
       </div>
     </div>
-
   </div>  
