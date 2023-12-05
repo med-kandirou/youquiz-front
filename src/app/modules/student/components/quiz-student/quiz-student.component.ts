@@ -42,13 +42,7 @@ export class QuizStudentComponent implements OnInit{
       this.getResponsebyQuestion(this.currentTemporidsation.question.id);
     })
   }
-  // getValidations(question_id:number){
-  //   this.tempoService.getByTest(question_id).subscribe((data:Temporisation[])=>{
-  //     this.temporisations=data;
-  //     this.currentTemporidsation=this.temporisations[this.index];
-      
-  //   })
-  // }
+
 
   nextQuestion(){
     if(this.temporisations.length>this.index){
