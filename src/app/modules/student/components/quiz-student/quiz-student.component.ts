@@ -38,12 +38,14 @@ export class QuizStudentComponent implements OnInit{
   }
 
   nextQuestion(){
-    if(this.temporisations.length!=this.index){
+    if(this.temporisations.length>this.index){
       this.currentTemporidsation=this.temporisations[this.index++];
       this.getResponsebyQuestion(this.currentTemporidsation.question.id);
+      if(this.temporisations.length==this.index){
+        this.lastQuestion=true
+      }
       return
     }
-    this.lastQuestion=true
   }
 
 
