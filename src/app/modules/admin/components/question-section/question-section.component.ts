@@ -105,6 +105,7 @@ export class QuestionSectionComponent implements OnInit{
 
   closeModal() {
     this.isVisible=false;
+    this.getQuestions(this.currentPage,this.currentSize);
   }
 
   

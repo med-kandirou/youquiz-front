@@ -43,9 +43,6 @@ export class MediaSectionComponent implements OnInit{
   }
 
   
-
-  
-
   getAll(page:number,size:number):void{
     this.service.getMedias(page,size).subscribe((data:any)=>{
       this.totalPages=data.totalPages;

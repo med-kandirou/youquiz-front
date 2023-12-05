@@ -93,5 +93,6 @@ export class ResponseSectionComponent implements OnInit{
   }
   closeModal() {
     this.isVisible=false;
+    this.getResponses(this.currentPage,this.currentSize);
   }
 }

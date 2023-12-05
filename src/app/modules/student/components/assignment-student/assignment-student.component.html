@@ -47,7 +47,7 @@
                             {{assig.test.trainer.firstName}}  {{assig.test.trainer.lastName}}
                         </td>
                         <td class="px-6 py-4" *ngIf="checkDate(assig)==true">
-                            <a href="#" class="underline text-blue-500">pass</a>
+                            <button (click)="passTest(assig.test.id)" class="underline text-blue-500">pass</button>
                         </td>
                         <td class="px-6 py-4" *ngIf="checkDate(assig)==false">
                             Not available

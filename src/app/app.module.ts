@@ -25,6 +25,7 @@ import { AssignmentStudentComponent } from './modules/student/components/assignm
 import { StatistiqueStudentComponent } from './modules/student/components/statistique-student/statistique-student.component';
 import { ResultStudentComponent } from './modules/student/components/result-student/result-student.component';
 import { QuizStudentComponent } from './modules/student/components/quiz-student/quiz-student.component';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { QuizStudentComponent } from './modules/student/components/quiz-student/
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
