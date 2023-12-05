@@ -29,8 +29,24 @@ export class QuizStudentComponent implements OnInit{
       item.question && item.response &&
       item.question.id === question_id && item.response.id === response_id
     );
-    document.getElementById(response_id.toString())?.classList.add("bg-slate-300");
-    console.log("test");
+    if(this.currentTemporidsation.question.type.toString()=='MulipleAnswer'){
+      var ele = document.getElementById(response_id.toString());
+      if (ele) {
+        if (ele.classList.contains("bg-slate-300")) {
+            ele.classList.remove("bg-slate-300");
+        } else {
+            ele.classList.add("bg-slate-300");
+        }
+      } 
+    }
+    else{
+      var elements = document.querySelectorAll(".response");
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].classList.remove("bg-slate-300");
+      }
+      document.getElementById(response_id.toString())?.classList.add("bg-slate-300");
+    }
+    
   }
   
     
