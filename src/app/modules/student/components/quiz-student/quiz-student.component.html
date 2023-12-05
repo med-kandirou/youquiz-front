@@ -1,10 +1,12 @@
-<div class="antialiased text-gray-700 bg-gray-100">
+<div class="antialiased text-gray-700 bg-gray-100 pt-10">
     <div id="app" class="flex w-full h-screen justify-center items-center">
       <div class="w-full max-w-xl p-3">
         <h1 class="font-bold text-5xl text-center text-indigo-700">
           Simple Quiz
         </h1>
+        
         <div class="bg-white p-12 rounded-lg shadow-lg w-full mt-8">
+          <p class="bg-green-400 w-max p-2 text-white text-center text-sm font-bold tracking-wide rounded-full mb-6">Time : {{currentTemporidsation.time}}</p>
           <div>
             <p class="text-2xl font-bold">{{currentTemporidsation.question.questionText}}</p>
             <div *ngFor="let val of validations">
@@ -13,8 +15,9 @@
                 {{val.response.textResponse}}
               </label>
             </div>
-           
+          
             <div class="mt-6 flow-root">
+              <div class="float-left bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2">Question : {{ index+1 +' / '+  this.temporisations.length}}</div>
               <button (click)="nextQuestion()" *ngIf="!lastQuestion" class="float-right bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2">
                 Next &gt;
               </button>
