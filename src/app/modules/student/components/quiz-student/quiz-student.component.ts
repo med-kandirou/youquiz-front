@@ -30,19 +30,20 @@ export class QuizStudentComponent implements OnInit{
       this.getResponsebyQuestion(this.currentTemporidsation.question.id);
     })
   }
-  getValidations(question_id:number){
-    this.tempoService.getByTest(question_id).subscribe((data:Temporisation[])=>{
-      this.temporisations=data;
-      this.currentTemporidsation=this.temporisations[this.index];
+  // getValidations(question_id:number){
+  //   this.tempoService.getByTest(question_id).subscribe((data:Temporisation[])=>{
+  //     this.temporisations=data;
+  //     this.currentTemporidsation=this.temporisations[this.index];
       
-    })
-  }
+  //   })
+  // }
 
   nextQuestion(){
     if(this.temporisations.length>this.index){
-      this.currentTemporidsation=this.temporisations[this.index++];
+      this.index++;
+      this.currentTemporidsation=this.temporisations[this.index];
       this.getResponsebyQuestion(this.currentTemporidsation.question.id);
-      if(this.temporisations.length==this.index){
+      if(this.temporisations.length-1==this.index){
         this.lastQuestion=true
       }
       return
