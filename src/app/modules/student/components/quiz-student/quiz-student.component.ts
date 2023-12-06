@@ -4,6 +4,7 @@ import { TemporisationService } from 'src/app/core/services/temporisation.servic
 import { Temporisation } from 'src/app/core/models/temporisation.model';
 import { ValidationService } from 'src/app/core/services/validation.service';
 import { Validation } from 'src/app/core/models/Validation.model';
+import { Assignment } from 'src/app/core/models/Assignment.model';
 
 @Component({
   selector: 'app-quiz-student',
@@ -55,20 +56,23 @@ export class QuizStudentComponent implements OnInit{
     })
   }
 
-  myresponses: Validation[][];
-  validation: Validation;
+  myresponses: Validation[]=[];
+  // validation: Validation;
   nextQuestion(question_id: number) {
-    let elements = document.querySelectorAll(".response");
+    const elements = document.querySelectorAll(".response");
     for (let i = 0; i < elements.length; i++) {
-        let validation = this.validations.filter(item =>
-            item.question && item.response &&
+        let validation = this.validations.find(item =>
             item.question.id === question_id && item.response.id === Number(elements[i].getAttribute("id"))
         );
-        if (validation.length > 0) {
-            this.myresponses.push(validation);
-            console.log(this.myresponses);
+        if (validation) {
+            this.myresponses.push({
+                id: validation.id,
+                response: validation.response,
+                question: validation.question
+            });
         }
     }
+    console.log(this.myresponses)
     //to next
     if(this.temporisations.length>this.index){
       this.index++;
