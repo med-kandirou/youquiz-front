@@ -26,7 +26,7 @@ export class QuizStudentComponent implements OnInit{
   }
   totalpoint:number=0; 
   
-  selectResponse(question_id: number, response_id: number) {
+  selectResponse(response_id: number) {
     if(this.currentTemporidsation.question.type.toString()=='MulipleAnswer'){
       var ele = document.getElementById(response_id.toString());
       if (ele) {
@@ -46,8 +46,6 @@ export class QuizStudentComponent implements OnInit{
     }
   }
   
-    
-
   getTemorisationbytest(test_id:number){
     this.tempoService.getByTest(test_id).subscribe((data:Temporisation[])=>{
       this.temporisations=data;
@@ -56,9 +54,7 @@ export class QuizStudentComponent implements OnInit{
     })
   }
 
-  myresponses: Validation[]=[];
-  // validation: Validation;
-  nextQuestion(question_id: number) {
+  getmesResponses(question_id: number) {
     const elements = document.querySelectorAll(".response");
     for (let i = 0; i < elements.length; i++) {
         let validation = this.validations.find(item =>
@@ -72,6 +68,11 @@ export class QuizStudentComponent implements OnInit{
             });
         }
     }
+  }
+
+  myresponses: Validation[]=[];
+  nextQuestion(question_id: number) {
+    this.getmesResponses(question_id);
     console.log(this.myresponses)
     //to next
     if(this.temporisations.length>this.index){
@@ -112,6 +113,17 @@ export class QuizStudentComponent implements OnInit{
         }
       },1000)
   }
+
+  ids_validation:number[]=[]
+  finish(question_id:number) {
+    this.getmesResponses(question_id);
+    this.myresponses.filter(res=>{
+      this.ids_validation.push(res.id);
+    })
+    console.log(this.ids_validation)
+    // this.validationServ.validateResponses(this.ids_validation);
+  }
+    
 
 
 }

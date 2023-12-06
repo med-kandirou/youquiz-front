@@ -13,7 +13,7 @@
             <p class="text-2xl font-bold mb-3">{{currentTemporidsation.question.questionText}}</p>
             <div class="grid grid-cols-2 gap-2">
               <div *ngFor="let val of validations" class="flex items-center justify-center">
-                <button [id]="val.response.id" class="mt-4 text-center border border-gray-300 rounded-lg py-1 px-6 text-lg h-full w-60 flex items-center justify-center" (click)="selectResponse(currentTemporidsation.question.id,val.response.id)">
+                <button [id]="val.response.id" class="mt-4 text-center border border-gray-300 rounded-lg py-1 px-6 text-lg h-full w-60 flex items-center justify-center" (click)="selectResponse(val.response.id)">
                   {{val.response.textResponse}}
                 </button>
               </div>
@@ -23,7 +23,7 @@
               <button (click)="nextQuestion(currentTemporidsation.question.id)" *ngIf="!lastQuestion" class="float-right bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2">
                 Next &gt;
               </button>
-              <button *ngIf="lastQuestion" class="float-right bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2">
+              <button (click)="finish(currentTemporidsation.question.id)" *ngIf="lastQuestion" class="float-right bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2">
                 Finish
               </button>
             </div>
