@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { TemporisationService } from 'src/app/core/services/temporisation.service';
 import { Temporisation } from 'src/app/core/models/temporisation.model';
 import { ValidationService } from 'src/app/core/services/validation.service';
@@ -86,20 +86,22 @@ export class QuizStudentComponent implements OnInit{
     this.validationServ.getByQuestion(question_id).subscribe((data:Validation[])=>{
       this.validations=data;
     })
+    clearInterval(this.intervalID);
     this.startTimer(this.currentTemporidsation.time);
   }
 
   restOftime:number;
+  intervalID:any
   startTimer(time:number) {
     this.restOftime=time*60
-      setInterval(() => {
+      this.intervalID=setInterval(() => {
         if(this.restOftime > 0) {
           this.restOftime--;
         }
         else if(this.restOftime == 0) {
           this.restOftime==0;
         }
-      },1500)
+      },1000)
   }
 
 
