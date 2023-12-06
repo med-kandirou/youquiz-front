@@ -55,7 +55,7 @@ export class QuizStudentComponent implements OnInit{
     })
   }
 
-  myresponses: Validation[][] = [];
+  myresponses: Validation[][];
   validation: Validation;
   nextQuestion(question_id: number) {
     let elements = document.querySelectorAll(".response");
@@ -93,7 +93,7 @@ export class QuizStudentComponent implements OnInit{
   restOftime:number;
   intervalID:any
   startTimer(time:number) {
-    this.restOftime=15
+    this.restOftime=time*60
       this.intervalID=setInterval(() => {
         if(this.restOftime > 0) {
           this.restOftime--;
