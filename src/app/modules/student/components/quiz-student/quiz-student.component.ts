@@ -93,13 +93,18 @@ export class QuizStudentComponent implements OnInit{
   restOftime:number;
   intervalID:any
   startTimer(time:number) {
-    this.restOftime=time*60
+    this.restOftime=15
       this.intervalID=setInterval(() => {
         if(this.restOftime > 0) {
           this.restOftime--;
         }
-        else if(this.restOftime == 0) {
-          this.restOftime==0;
+        if(this.restOftime<=10){
+          document.querySelector("#timer")?.classList.remove("bg-green-400")
+          document.querySelector("#timer")?.classList.add("bg-red-400")
+        }
+        if(this.restOftime==0){
+          clearInterval(this.intervalID);
+          this.nextQuestion(this.temporisations[this.index].question.id);
         }
       },1000)
   }
