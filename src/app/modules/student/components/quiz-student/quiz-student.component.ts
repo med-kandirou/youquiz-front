@@ -5,6 +5,7 @@ import { Temporisation } from 'src/app/core/models/temporisation.model';
 import { ValidationService } from 'src/app/core/services/validation.service';
 import { Validation } from 'src/app/core/models/Validation.model';
 import { Assignment } from 'src/app/core/models/Assignment.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-quiz-student',
@@ -122,11 +123,29 @@ export class QuizStudentComponent implements OnInit{
     })
     this.validationServ.validateResponses(this.ids_validation).subscribe((score:number)=>{
       console.log("score obtenu : "+score + "score test : "+this.currentTemporidsation.test.successScore)
-      if(score>=this.currentTemporidsation.test.successScore){
-        console.log("winner")
-      }else{
-        console.log("loser")
+      if(this.currentTemporidsation.test.canSeeResult){
+        if(score>=this.currentTemporidsation.test.successScore){
+          Swal.fire({
+            title: "Good job!",
+            text: "You successfully passed the quiz with a score: "+score+" / "+this.currentTemporidsation.test.successScore+"",
+            icon: "success"
+          });
+        }else{
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You lost the quiz with a score: "+score+" / "+this.currentTemporidsation.test.successScore+"",
+          });
+        }
       }
+      else{
+        Swal.fire({
+          title: "You passed the exam",
+          text: "We will provide you with the results shortly",
+          icon: "question"
+        });
+      }
+      
     });
   }
     
