@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, interval } from 'rxjs';
 import { TemporisationService } from 'src/app/core/services/temporisation.service';
 import { Temporisation } from 'src/app/core/models/temporisation.model';
 import { ValidationService } from 'src/app/core/services/validation.service';
 import { Validation } from 'src/app/core/models/Validation.model';
-import { Assignment } from 'src/app/core/models/Assignment.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -62,10 +60,7 @@ export class QuizStudentComponent implements OnInit{
             item.question.id === question_id && item.response.id === Number(elements[i].getAttribute("id"))
         );
         if (validation) {
-            this.myresponses.push({
-                id: validation.id,
-                response: validation.response,
-                question: validation.question
+            this.myresponses.push({id: validation.id,response: validation.response,question: validation.question
             });
         }
     }
@@ -74,7 +69,6 @@ export class QuizStudentComponent implements OnInit{
   myresponses: Validation[]=[];
   nextQuestion(question_id: number) {
     this.getmesResponses(question_id);
-    console.log(this.myresponses)
     //to next
     if(this.temporisations.length>this.index){
       this.index++;
@@ -122,29 +116,34 @@ export class QuizStudentComponent implements OnInit{
       this.ids_validation.push(res.id);
     })
     this.validationServ.validateResponses(this.ids_validation).subscribe((score:number)=>{
-      console.log("score obtenu : "+score + "score test : "+this.currentTemporidsation.test.successScore)
+      var icon:any
+      var text:any
+      var title:any
       if(this.currentTemporidsation.test.canSeeResult){
         if(score>=this.currentTemporidsation.test.successScore){
-          Swal.fire({
-            title: "Good job!",
-            text: "You successfully passed the quiz with a score: "+score+" / "+this.currentTemporidsation.test.successScore+"",
-            icon: "success"
-          });
+          icon="success";
+          text="You successfully passed the quiz with a score: "+score+" / "+this.currentTemporidsation.test.successScore+"";
+          title="Good job!"
         }else{
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "You lost the quiz with a score: "+score+" / "+this.currentTemporidsation.test.successScore+"",
-          });
+          icon="error";
+          text="You lost the quiz with a score: "+score+" / "+this.currentTemporidsation.test.successScore+"";
+          title="Oops..."
         }
       }
       else{
-        Swal.fire({
-          title: "You passed the exam",
-          text: "We will provide you with the results shortly",
-          icon: "question"
-        });
+        icon="question";
+        text="We will provide you with the results shortly";
+        title="You passed the exam"
       }
+      Swal.fire({
+        title: title,
+        text: text,
+        icon: icon
+      }).then((result) => {
+        if (result.isConfirmed) {
+          alert("clicked")
+        }
+      })
       
     });
   }

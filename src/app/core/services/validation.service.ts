@@ -11,11 +11,11 @@ export class ValidationService {
 
   constructor(private http:HttpClient) { }
 
-  getByQuestion(question_id:number){
+  getByQuestion(question_id:number):Observable<Validation[]>{
     return this.http.get<Validation[]>(API_BASE_URL+`/api/Validation/byQuestion/${question_id}`, { headers: { Accept: 'application/json' } });
   }
 
-  validateResponses(ids_validations:number[]){
+  validateResponses(ids_validations:number[]):Observable<number>{
     return this.http.post<number>(API_BASE_URL+'/api/Validation/verifyResponses',{'ids_validations' :ids_validations},{ headers: { Accept: 'application/json' } });
   }
 }
