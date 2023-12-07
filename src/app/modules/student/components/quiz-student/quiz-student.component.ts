@@ -120,8 +120,10 @@ export class QuizStudentComponent implements OnInit{
     this.myresponses.filter(res=>{
       this.ids_validation.push(res.id);
     })
-    console.log(this.ids_validation)
-    // this.validationServ.validateResponses(this.ids_validation);
+    // console.log(this.ids_validation)
+    this.validationServ.validateResponses(this.ids_validation).subscribe((data:Number)=>{
+      console.log(data)
+    });
   }
     
 

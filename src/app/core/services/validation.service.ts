@@ -16,6 +16,6 @@ export class ValidationService {
   }
 
   validateResponses(ids_validations:number[]){
-    return this.http.post<number>(API_BASE_URL+'/api/Validation',{'ids_validations' : ids_validations},{ headers: { Accept: 'application/json' } });
+    return this.http.post<number>(API_BASE_URL+'/api/Validation/verifyResponses',{'ids_validations' :ids_validations},{ headers: { Accept: 'application/json' } });
   }
 }
