@@ -11,8 +11,8 @@ export class AssignementService{
 
   constructor(private http:HttpClient) { }
 
-  getByStudent(student_id:number):Observable<Assignment[]>{
-    return this.http.get<Assignment[]>(API_BASE_URL+`/api/Assignment/byStudent/${student_id}` ,{ headers: { Accept: 'application/json' } });
+  getByStudent(student_id:number,isPassed:boolean):Observable<Assignment[]>{
+    return this.http.get<Assignment[]>(API_BASE_URL+`/api/Assignment/byStudent/${student_id}/${isPassed}` ,{ headers: { Accept: 'application/json' } });
   }
 
 }

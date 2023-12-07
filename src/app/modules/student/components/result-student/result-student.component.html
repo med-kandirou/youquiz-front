@@ -1,5 +1,6 @@
 <app-navbar-student></app-navbar-student>
-        <div class="flex justify-center items-center h-screen">
+        <h1 class="bg-indigo-600 w-max p-3 mt-9 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2 mr-auto ml-auto">My results</h1>
+        <div class="flex justify-center mt-11"> 
             <table class="w-11/12 text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
                 <thead class="text-xs text-gray-800 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -13,7 +14,10 @@
                             Success score
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            numberOfChances
+                            My score
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Result
                         </th>
                         <th scope="col" class="px-6 py-3">
                             remarks
@@ -21,18 +25,15 @@
                         <th scope="col" class="px-6 py-3">
                             Trainer
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Pass
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <!-- <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{assig.dateStart}}
+                    <tr *ngFor="let assig of assignements" class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ assig.dateStart | date:"MMM dd, yyyy 'at' hh:mm a" }}
                         </th>
                         <td class="px-6 py-4">
-                            {{assig.dateEnd}}
+                            {{ assig.dateEnd | date:"MMM dd, yyyy 'at' hh:mm a" }}
                         </td>
                         <td class="px-6 py-4">
                             {{assig.test.successScore}}
@@ -40,14 +41,19 @@
                         <td class="px-6 py-4">
                             {{assig.test.numberOfChances}}
                         </td>
+                        <td class="px-6 py-4" *ngIf="assig.result">
+                            <p class="text-green-600 font-bold">Success</p>
+                        </td>
+                        <td class="px-6 py-4" *ngIf="assig.result==false">
+                            <p class="text-red-600 font-bold">failure</p>
+                        </td>
                         <td class="px-6 py-4">
                             {{assig.test.remarks}}
                         </td>
                         <td class="px-6 py-4">
                             {{assig.test.trainer.firstName}}  {{assig.test.trainer.lastName}}
-                        </td> -->
+                        </td>
                     </tr>
                 </tbody>
             </table>
     </div>
-

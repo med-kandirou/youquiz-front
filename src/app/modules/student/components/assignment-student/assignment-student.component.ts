@@ -14,11 +14,11 @@ export class AssignmentStudentComponent implements OnInit{
   constructor(private assiService:AssignementService,private router: Router){}
 
   ngOnInit(): void {
-    this.getAssigbyStudent(STUDENT_ID);
+    this.getAssigbyStudent(STUDENT_ID,false);
   }
   assignements:Assignment[]=[]
-  getAssigbyStudent(student_id:number){
-    this.assiService.getByStudent(student_id).subscribe((data:Assignment[])=>{
+  getAssigbyStudent(student_id:number,isPassed:boolean){
+    this.assiService.getByStudent(student_id,isPassed).subscribe((data:Assignment[])=>{
       this.assignements=data;
     })
   }

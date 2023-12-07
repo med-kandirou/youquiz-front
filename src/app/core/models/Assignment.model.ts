@@ -5,6 +5,7 @@ export interface Assignment {
     dateStart: Date;
     dateEnd: Date;
     score: number;
+    result:boolean;
     test: Test;
     student: Student;
 }
