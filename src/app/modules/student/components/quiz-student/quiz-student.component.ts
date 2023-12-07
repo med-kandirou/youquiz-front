@@ -3,6 +3,7 @@ import { TemporisationService } from 'src/app/core/services/temporisation.servic
 import { Temporisation } from 'src/app/core/models/temporisation.model';
 import { ValidationService } from 'src/app/core/services/validation.service';
 import { Validation } from 'src/app/core/models/Validation.model';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,12 +19,13 @@ export class QuizStudentComponent implements OnInit{
   currentTemporidsation:Temporisation
   index:number=0
   lastQuestion: boolean=false;
-  constructor(private tempoService:TemporisationService,private validationServ:ValidationService){}
+  constructor(private tempoService:TemporisationService,private validationServ:ValidationService,private _router: Router){}
 
   ngOnInit(): void {
     this.getTemorisationbytest(1);
   }
   totalpoint:number=0; 
+
   
   selectResponse(response_id: number) {
     if(this.currentTemporidsation.question.type.toString()=='MulipleAnswer'){
@@ -141,7 +143,7 @@ export class QuizStudentComponent implements OnInit{
         icon: icon
       }).then((result) => {
         if (result.isConfirmed) {
-          alert("clicked")
+          this._router.navigate(['student/assignement'])
         }
       })
       
