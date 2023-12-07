@@ -120,9 +120,13 @@ export class QuizStudentComponent implements OnInit{
     this.myresponses.filter(res=>{
       this.ids_validation.push(res.id);
     })
-    // console.log(this.ids_validation)
-    this.validationServ.validateResponses(this.ids_validation).subscribe((data:Number)=>{
-      console.log(data)
+    this.validationServ.validateResponses(this.ids_validation).subscribe((score:number)=>{
+      console.log("score obtenu : "+score + "score test : "+this.currentTemporidsation.test.successScore)
+      if(score>=this.currentTemporidsation.test.successScore){
+        console.log("winner")
+      }else{
+        console.log("loser")
+      }
     });
   }
     
