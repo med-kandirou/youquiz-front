@@ -35,8 +35,7 @@ export class AssignmentStudentComponent implements OnInit{
   }
 
   passTest(test_id:number){
-    localStorage.setItem('test_id',test_id.toString());
-    this.router.navigate(['/student/quiz'])
+    this.router.navigate([`/student/quiz/${test_id}`])
   }
 
 }
