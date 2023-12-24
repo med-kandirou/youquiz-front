@@ -34,8 +34,8 @@ export class AssignmentStudentComponent implements OnInit{
     }
   }
 
-  passTest(test_id:number){
-    this.router.navigate([`/student/quiz/${test_id}`])
+  passTest(assignment_id:number){
+    this.router.navigate([`/student/quiz/${assignment_id}`])
   }
 
 }

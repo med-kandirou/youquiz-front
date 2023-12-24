@@ -5,7 +5,8 @@ import { ValidationService } from 'src/app/core/services/validation.service';
 import { Validation } from 'src/app/core/models/Validation.model';
 import { Router,ActivatedRoute  } from '@angular/router';
 import Swal from 'sweetalert2';
-
+import { AssignementService } from 'src/app/core/services/assignement.service';
+import { Assignment } from 'src/app/core/models/Assignment.model';
 @Component({
   selector: 'app-quiz-student',
   templateUrl: './quiz-student.component.html',
@@ -19,10 +20,16 @@ export class QuizStudentComponent implements OnInit{
   currentTemporidsation:Temporisation
   index:number=0
   lastQuestion: boolean=false;
-  constructor(private tempoService:TemporisationService,private validationServ:ValidationService,private _router: Router,private ActivatedRoute :ActivatedRoute){}
+  constructor(private assignService:AssignementService,private tempoService:TemporisationService,private validationServ:ValidationService,private _router: Router,private ActivatedRoute :ActivatedRoute){}
 
+  assignment:Assignment;
+  idTest:number;
   ngOnInit(): void {
-    this.getTemorisationbytest(this.ActivatedRoute.snapshot.params['idQuiz']);
+    this.assignService.getTestbyAssign(this.ActivatedRoute.snapshot.params['idAssign']).subscribe((data:Assignment)=>{
+      this.assignment = data;
+      this.idTest=this.assignment.test.id;
+      this.getTemorisationbytest(this.idTest);
+    });
   }
 
   selectResponse(response_id: number) {
@@ -119,18 +126,34 @@ export class QuizStudentComponent implements OnInit{
       var icon:any
       var text:any
       var title:any
+      var result:any
       if(this.currentTemporidsation.test.canSeeResult){
         if(score>=this.currentTemporidsation.test.successScore){
           icon="success";
           text="You successfully passed the quiz with a score: "+score+" / "+this.currentTemporidsation.test.successScore+"";
           title="Good job!"
+          this.assignService.changeAssignTopassed(this.assignment.id,true).subscribe((data:any)=>{
+            console.log(data)
+          });
         }else{
           icon="error";
           text="You lost the quiz with a score: "+score+" / "+this.currentTemporidsation.test.successScore+"";
           title="Oops..."
+          this.assignService.changeAssignTopassed(this.assignment.id,false).subscribe((data:any)=>{
+            console.log(data)
+          });
         }
       }
       else{
+        if(score>=this.currentTemporidsation.test.successScore){
+          this.assignService.changeAssignTopassed(this.assignment.id,true).subscribe((data:any)=>{
+            console.log(data)
+          });
+        }else{
+          this.assignService.changeAssignTopassed(this.assignment.id,false).subscribe((data:any)=>{
+            console.log(data)
+          });
+        }
         icon="question";
         text="We will provide you with the results shortly";
         title="You passed the exam"
@@ -141,7 +164,7 @@ export class QuizStudentComponent implements OnInit{
         icon: icon
       }).then((result) => {
         if (result.isConfirmed) {
-          this._router.navigate(['student/assignement'])
+          this._router.navigate(['student/results'])
         }
       })
       

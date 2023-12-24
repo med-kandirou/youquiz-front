@@ -14,9 +14,6 @@
                             Success score
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            My score
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Result
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -38,15 +35,19 @@
                         <td class="px-6 py-4">
                             {{assig.test.successScore}}
                         </td>
-                        <td class="px-6 py-4">
-                            {{assig.test.numberOfChances}}
-                        </td>
-                        <td class="px-6 py-4" *ngIf="assig.result">
-                            <p class="text-green-600 font-bold">Success</p>
-                        </td>
-                        <td class="px-6 py-4" *ngIf="assig.result==false">
-                            <p class="text-red-600 font-bold">failure</p>
-                        </td>
+                        <div *ngIf="assig.test.canSeeResult">
+                            <td class="px-6 py-4" *ngIf="assig.result">
+                                <p class="text-green-600 font-bold">Success</p>
+                            </td>
+                            <td class="px-6 py-4" *ngIf="assig.result==false">
+                                <p class="text-red-600 font-bold">failure</p>
+                            </td>
+                        </div>
+                        <div *ngIf="assig.test.canSeeResult==false">
+                            <td class="px-6 py-4">
+                                <p class="text-grey-600 font-bold">Result not availible</p>
+                            </td>
+                        </div>
                         <td class="px-6 py-4">
                             {{assig.test.remarks}}
                         </td>
