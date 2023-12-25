@@ -19,7 +19,7 @@ export class AnswerService {
   
     return this.http.post<Assignment>(
       API_BASE_URL + `/api/Answer`,
-      form.value, // Use form.value to get the values as an object
+      form.value,
       { headers: { Accept: 'application/json' } }
     );
   }
