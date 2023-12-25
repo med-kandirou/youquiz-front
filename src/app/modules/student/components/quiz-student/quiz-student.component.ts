@@ -7,6 +7,7 @@ import { Router,ActivatedRoute  } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AssignementService } from 'src/app/core/services/assignement.service';
 import { Assignment } from 'src/app/core/models/Assignment.model';
+import { AnswerService } from 'src/app/core/services/answer.service';
 @Component({
   selector: 'app-quiz-student',
   templateUrl: './quiz-student.component.html',
@@ -20,7 +21,7 @@ export class QuizStudentComponent implements OnInit{
   currentTemporidsation:Temporisation
   index:number=0
   lastQuestion: boolean=false;
-  constructor(private assignService:AssignementService,private tempoService:TemporisationService,private validationServ:ValidationService,private _router: Router,private ActivatedRoute :ActivatedRoute){}
+  constructor(private answerService:AnswerService,private assignService:AssignementService,private tempoService:TemporisationService,private validationServ:ValidationService,private _router: Router,private ActivatedRoute :ActivatedRoute){}
 
   assignment:Assignment;
   idTest:number;
@@ -67,9 +68,11 @@ export class QuizStudentComponent implements OnInit{
             item.question.id === question_id && item.response.id === Number(elements[i].getAttribute("id"))
         );
         if (validation) {
-            this.myresponses.push({id: validation.id,response: validation.response,question: validation.question
+            this.myresponses.push({id: validation.id,response: validation.response,question: validation.question});
+            this.answerService.save(validation.id,this.ActivatedRoute.snapshot.params['idAssign']).subscribe((data:any)=>{
+              console.log(data)
             });
-        }
+          }
     }
   }
 
@@ -123,10 +126,9 @@ export class QuizStudentComponent implements OnInit{
       this.ids_validation.push(res.id);
     })
     this.validationServ.validateResponses(this.ids_validation).subscribe((score:number)=>{
-      var icon:any
+      var icon:any  
       var text:any
       var title:any
-      var result:any
       if(this.currentTemporidsation.test.canSeeResult){
         if(score>=this.currentTemporidsation.test.successScore){
           icon="success";
