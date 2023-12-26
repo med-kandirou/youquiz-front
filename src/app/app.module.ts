@@ -22,10 +22,10 @@ import { SaveSubjectComponent } from './core/shared/components/save-subject/save
 import { SaveMediaComponent } from './core/shared/components/save-media/save-media.component';
 import { NavbarStudentComponent } from './modules/student/components/navbar-student/navbar-student.component';
 import { AssignmentStudentComponent } from './modules/student/components/assignment-student/assignment-student.component';
-import { StatistiqueStudentComponent } from './modules/student/components/statistique-student/statistique-student.component';
 import { ResultStudentComponent } from './modules/student/components/result-student/result-student.component';
 import { QuizStudentComponent } from './modules/student/components/quiz-student/quiz-student.component';
 import { StoreModule } from '@ngrx/store';
+import { SallesComponent } from './modules/student/components/salles/salles.component';
 
 
 @NgModule({
@@ -46,9 +46,9 @@ import { StoreModule } from '@ngrx/store';
     SaveMediaComponent,
     NavbarStudentComponent,
     AssignmentStudentComponent,
-    StatistiqueStudentComponent,
     ResultStudentComponent,
-    QuizStudentComponent
+    QuizStudentComponent,
+    SallesComponent
   ],
   imports: [
     BrowserModule,
