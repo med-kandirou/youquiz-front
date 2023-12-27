@@ -9,6 +9,8 @@ import { AssignmentStudentComponent } from './modules/student/components/assignm
 import { ResultStudentComponent } from './modules/student/components/result-student/result-student.component';
 import { QuizStudentComponent } from './modules/student/components/quiz-student/quiz-student.component';
 import { SallesComponent } from './modules/student/components/salles/salles.component';
+import { ChatRoomComponent } from './modules/student/components/chat-room/chat-room.component';
+import { ChatComponent } from './modules/student/components/chat/chat.component';
 const routes: Routes = [
   { path : '', redirectTo : '/admin' , pathMatch: 'full'},
   { path: 'admin', component: QuestionSectionComponent},
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'student/assignement', component: AssignmentStudentComponent},
   { path: 'student/results', component: ResultStudentComponent},
   { path: 'student/quiz/:idAssign', component: QuizStudentComponent},
+  { path: 'student/chat', component: ChatComponent},
+  { path: 'student/room/:idRoom', component: ChatRoomComponent},
 ];
 
 @NgModule({

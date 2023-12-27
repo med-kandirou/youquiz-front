@@ -26,6 +26,8 @@ import { ResultStudentComponent } from './modules/student/components/result-stud
 import { QuizStudentComponent } from './modules/student/components/quiz-student/quiz-student.component';
 import { StoreModule } from '@ngrx/store';
 import { SallesComponent } from './modules/student/components/salles/salles.component';
+import { ChatRoomComponent } from './modules/student/components/chat-room/chat-room.component';
+import { ChatComponent } from './modules/student/components/chat/chat.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { SallesComponent } from './modules/student/components/salles/salles.comp
     AssignmentStudentComponent,
     ResultStudentComponent,
     QuizStudentComponent,
-    SallesComponent
+    SallesComponent,
+    ChatRoomComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
