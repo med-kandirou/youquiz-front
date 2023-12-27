@@ -12,7 +12,7 @@ export class MessageService {
   constructor(private http:HttpClient) { }
 
   getMessagesByRoom(salle_id: number): Observable<Message[]> {
-    return this.http.get<Message[]>(API_BASE_URL+`/api/Salle/${salle_id}`,{ headers: { Accept: 'application/json' } });
+    return this.http.get<Message[]>(API_BASE_URL+`/api/Message/byRoom/${salle_id}`,{ headers: { Accept: 'application/json' } });
   }
 
 }

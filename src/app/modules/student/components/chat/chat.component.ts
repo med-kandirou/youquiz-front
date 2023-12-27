@@ -9,11 +9,10 @@ import { ParticipationService } from 'src/app/core/services/participation.servic
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  router: any;
 
   constructor(private partServ:ParticipationService,private route:Router){}
   ngOnInit(): void {
-    this.findParticipatesByStudOut(1,"in");
+    this.findParticipatesByStudOut(3,"in");
   }
 
   participates:Salle[];

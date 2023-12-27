@@ -12,11 +12,14 @@ import { MessageService } from 'src/app/core/services/message.service';
   styleUrls: ['./chat-room.component.css']
 })
 export class ChatRoomComponent {
-  constructor(private messageSer:MessageService,private partServ:ParticipationService,private salleServ:SalleService,private ActivatedRoute :ActivatedRoute,private route :Router){}
-  ngOnInit(): void {
-    this.findParticipatesByStudOut(1,"in");
-    this.getRoom(this.ActivatedRoute.snapshot.params['idRoom']);
 
+  constructor(private messageSer:MessageService,private partServ:ParticipationService,private salleServ:SalleService,private ActivatedRoute :ActivatedRoute,private route :Router){}
+  
+  myId:number= 3;
+  ngOnInit(): void {
+    this.findParticipatesByStudOut(this.myId,"in");
+    this.getRoom(this.ActivatedRoute.snapshot.params['idRoom']);
+    this.getMessagesByRoom(this.ActivatedRoute.snapshot.params['idRoom']);
   }
 
   participates:Salle[];
@@ -32,6 +35,7 @@ export class ChatRoomComponent {
   getMessagesByRoom(room_id:number){
     this.messageSer.getMessagesByRoom(room_id).subscribe((data:Message[])=>{
       this.messages=data;
+      console.log(this.messages)
     })
   }
 
@@ -40,10 +44,9 @@ export class ChatRoomComponent {
       this.currentRoom=data;
     })
   }
-  // navigateToRoom(room_id:number) {
-  //   this.route.navigate(['/student/room/'+room_id+'']);
-  // }
+
   send(salle_id: number) {
     throw new Error('Method not implemented.');
   }
+
 }
