@@ -15,7 +15,7 @@ export class ChatRoomComponent {
 
   constructor(private messageSer:MessageService,private partServ:ParticipationService,private salleServ:SalleService,private ActivatedRoute :ActivatedRoute,private route :Router){}
   
-  myId:number= 3;
+  myId:number= 1;
   ngOnInit(): void {
     this.findParticipatesByStudOut(this.myId,"in");
     this.getRoom(this.ActivatedRoute.snapshot.params['idRoom']);

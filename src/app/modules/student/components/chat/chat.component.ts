@@ -12,7 +12,7 @@ export class ChatComponent {
 
   constructor(private partServ:ParticipationService,private route:Router){}
   ngOnInit(): void {
-    this.findParticipatesByStudOut(3,"in");
+    this.findParticipatesByStudOut(1,"in");
   }
 
   participates:Salle[];
