@@ -6,6 +6,8 @@ import { ActivatedRoute, Router  } from '@angular/router';
 import { Message } from 'src/app/core/models/Message.model';
 import { MessageService } from 'src/app/core/services/message.service';
 import { FormBuilder, Validators } from '@angular/forms';
+// import * as SockJS from 'sockjs-client';
+// import * as Stomp from 'stompjs';
 
 @Component({
   selector: 'app-chat-room',
@@ -19,7 +21,7 @@ export class ChatRoomComponent {
   myId:number= 1;
   idRoom:number;
   ngOnInit(): void {
-    this.findParticipatesByStudOut(this.myId,"in");
+    this.findParticipatesByStud(this.myId,"in");
     this.idRoom=this.ActivatedRoute.snapshot.params['idRoom'];
     this.getRoom(this.idRoom);
     this.getMessagesByRoom(this.idRoom);
@@ -28,8 +30,9 @@ export class ChatRoomComponent {
   participates:Salle[];
   messages:Message[];
   currentRoom:Salle;
+  form:any;
 
-  findParticipatesByStudOut(studentId:number,status:string){
+  findParticipatesByStud(studentId:number,status:string){
     this.partServ.findParticipatesByStudent(studentId,status).subscribe((data:any)=>{
       this.participates=data;
     })
@@ -48,9 +51,9 @@ export class ChatRoomComponent {
     })
   }
 
+
   content:string=''
-  form:any;
-  sendMessage() {
+  sendMessage(): void {
     this.form = this.fb.group({
       content: [this.content, Validators.required],
       participateID: this.fb.group({
@@ -62,10 +65,14 @@ export class ChatRoomComponent {
         })
       })
     });
-    this.messageSer.save(this.form).subscribe((data:Message)=>{
-      console.log(data)
-    });
-    
   }
+
+
+
+
+
+
+
+
 
 }
