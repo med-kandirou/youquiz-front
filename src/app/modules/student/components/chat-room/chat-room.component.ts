@@ -5,6 +5,7 @@ import { SalleService } from 'src/app/core/services/salle.service';
 import { ActivatedRoute, Router  } from '@angular/router';
 import { Message } from 'src/app/core/models/Message.model';
 import { MessageService } from 'src/app/core/services/message.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-chat-room',
@@ -13,13 +14,15 @@ import { MessageService } from 'src/app/core/services/message.service';
 })
 export class ChatRoomComponent {
 
-  constructor(private messageSer:MessageService,private partServ:ParticipationService,private salleServ:SalleService,private ActivatedRoute :ActivatedRoute,private route :Router){}
+  constructor(private fb: FormBuilder,private messageSer:MessageService,private partServ:ParticipationService,private salleServ:SalleService,private ActivatedRoute :ActivatedRoute,private route :Router){}
   
   myId:number= 1;
+  idRoom:number;
   ngOnInit(): void {
     this.findParticipatesByStudOut(this.myId,"in");
-    this.getRoom(this.ActivatedRoute.snapshot.params['idRoom']);
-    this.getMessagesByRoom(this.ActivatedRoute.snapshot.params['idRoom']);
+    this.idRoom=this.ActivatedRoute.snapshot.params['idRoom'];
+    this.getRoom(this.idRoom);
+    this.getMessagesByRoom(this.idRoom);
   }
 
   participates:Salle[];
@@ -45,8 +48,24 @@ export class ChatRoomComponent {
     })
   }
 
-  send(salle_id: number) {
-    throw new Error('Method not implemented.');
+  content:string=''
+  form:any;
+  sendMessage() {
+    this.form = this.fb.group({
+      content: [this.content, Validators.required],
+      participateID: this.fb.group({
+        student: this.fb.group({
+          code: this.myId
+        }),
+        salle: this.fb.group({
+          id: this.idRoom
+        })
+      })
+    });
+    this.messageSer.save(this.form).subscribe((data:Message)=>{
+      console.log(data)
+    });
+    
   }
 
 }

@@ -15,4 +15,8 @@ export class MessageService {
     return this.http.get<Message[]>(API_BASE_URL+`/api/Message/byRoom/${salle_id}`,{ headers: { Accept: 'application/json' } });
   }
 
+  save(form: any): Observable<Message> {
+    return this.http.post<Message>(API_BASE_URL+`/chat.sendMessage`,form,{ headers: { Accept: 'application/json' } });
+  }
+
 }
