@@ -6,8 +6,8 @@ import { ActivatedRoute, Router  } from '@angular/router';
 import { Message } from 'src/app/core/models/Message.model';
 import { MessageService } from 'src/app/core/services/message.service';
 import { FormBuilder, Validators } from '@angular/forms';
-// import * as SockJS from 'sockjs-client';
-// import * as Stomp from 'stompjs';
+import { Stomp } from '@stomp/stompjs';
+import * as SockJS from 'sockjs-client';
 
 @Component({
   selector: 'app-chat-room',
@@ -15,6 +15,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./chat-room.component.css']
 })
 export class ChatRoomComponent {
+  stompClient: any;
 
   constructor(private fb: FormBuilder,private messageSer:MessageService,private partServ:ParticipationService,private salleServ:SalleService,private ActivatedRoute :ActivatedRoute,private route :Router){}
   
@@ -25,12 +26,22 @@ export class ChatRoomComponent {
     this.idRoom=this.ActivatedRoute.snapshot.params['idRoom'];
     this.getRoom(this.idRoom);
     this.getMessagesByRoom(this.idRoom);
+    this.initializeWebSocketConnection();
+  }
+
+  initializeWebSocketConnection() {
+    const socket = new SockJS('http://localhost:8080/ws'); // Replace with your WebSocket endpoint
+    this.stompClient = Stomp.over(socket);
+    this.stompClient.connect({}, () => {
+      console.log('WebSocket Connected');
+    });
   }
 
   participates:Salle[];
   messages:Message[];
   currentRoom:Salle;
   form:any;
+
 
   findParticipatesByStud(studentId:number,status:string){
     this.partServ.findParticipatesByStudent(studentId,status).subscribe((data:any)=>{
@@ -53,18 +64,21 @@ export class ChatRoomComponent {
 
 
   content:string=''
-  sendMessage(): void {
-    this.form = this.fb.group({
-      content: [this.content, Validators.required],
-      participateID: this.fb.group({
-        student: this.fb.group({
+
+  sendMessage() {
+    var payload = {
+      id: null,  
+      content: this.content,
+      participateID: {
+        student: {
           code: this.myId
-        }),
-        salle: this.fb.group({
+        },
+        room: {
           id: this.idRoom
-        })
-      })
-    });
+        }
+      }
+    };
+    this.stompClient.send('/app/chat.sendMessage/'+this.idRoom, {}, JSON.stringify(payload)); 
   }
 
 
