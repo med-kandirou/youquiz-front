@@ -30,10 +30,11 @@ export class ChatRoomComponent {
   }
 
   initializeWebSocketConnection() {
-    const socket = new SockJS('http://localhost:8080/ws'); // Replace with your WebSocket endpoint
+    const socket = new SockJS('http://localhost:8080/ws'); 
     this.stompClient = Stomp.over(socket);
     this.stompClient.connect({}, () => {
       console.log('WebSocket Connected');
+      this.onConnected();
     });
   }
 
@@ -62,9 +63,7 @@ export class ChatRoomComponent {
     })
   }
 
-
   content:string=''
-
   sendMessage() {
     var payload = {
       id: null,  
@@ -81,6 +80,19 @@ export class ChatRoomComponent {
     this.stompClient.send('/app/chat.sendMessage/'+this.idRoom, {}, JSON.stringify(payload)); 
   }
 
+  onConnected() {
+    this.stompClient.subscribe('/room/'+this.idRoom+'', (data:any)=>{
+      const receivedData = JSON.parse(data.body);
+      this.messages.push(receivedData)
+      this.content='';
+      console.log('Received data:', receivedData);
+    });
+
+    // this.stompClient.send("/app/chat.addUser",
+    //     {},
+    //     JSON.stringify({sender: username, type: 'JOIN'})
+    // )
+  }
 
 
 
