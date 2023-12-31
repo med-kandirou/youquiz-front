@@ -11,6 +11,7 @@ import { QuizStudentComponent } from './modules/student/components/quiz-student/
 import { SallesComponent } from './modules/student/components/salles/salles.component';
 import { ChatRoomComponent } from './modules/student/components/chat-room/chat-room.component';
 import { ChatComponent } from './modules/student/components/chat/chat.component';
+import { LoginComponent } from './modules/student/components/login/login.component';
 const routes: Routes = [
   { path : '', redirectTo : '/admin' , pathMatch: 'full'},
   { path: 'admin', component: QuestionSectionComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'admin/level', component: LevelSectionComponent},
   { path: 'admin/media', component: MediaSectionComponent},
   { path: 'student', component: SallesComponent},
+  { path: 'student/login', component: LoginComponent},
   { path: 'student/assignement', component: AssignmentStudentComponent},
   { path: 'student/results', component: ResultStudentComponent},
   { path: 'student/quiz/:idAssign', component: QuizStudentComponent},

@@ -28,6 +28,7 @@ import { StoreModule } from '@ngrx/store';
 import { SallesComponent } from './modules/student/components/salles/salles.component';
 import { ChatRoomComponent } from './modules/student/components/chat-room/chat-room.component';
 import { ChatComponent } from './modules/student/components/chat/chat.component';
+import { LoginComponent } from './modules/student/components/login/login.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ChatComponent } from './modules/student/components/chat/chat.component'
     QuizStudentComponent,
     SallesComponent,
     ChatRoomComponent,
-    ChatComponent
+    ChatComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
