@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit{
     this.initform();
   }
 
-  
   initform():void{
     this.loginForm=this.fb.group({
       firstName: [null, [Validators.required]],
@@ -27,5 +26,4 @@ export class LoginComponent implements OnInit{
       console.log(data);
     })
   }
-
 }
