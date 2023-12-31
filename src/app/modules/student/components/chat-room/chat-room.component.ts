@@ -85,12 +85,11 @@ export class ChatRoomComponent {
       const receivedData = JSON.parse(data.body);
       this.messages.push(receivedData)
       this.content='';
-      console.log('Received data:', receivedData);
     });
 
     // this.stompClient.send("/app/chat.addUser",
     //     {},
-    //     JSON.stringify({sender: username, type: 'JOIN'})
+    //     JSON.stringify({sender: "Mohamed", type: 'JOIN'})
     // )
   }
 
