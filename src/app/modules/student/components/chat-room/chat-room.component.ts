@@ -8,6 +8,8 @@ import { MessageService } from 'src/app/core/services/message.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Stomp } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
+import { Store } from '@ngrx/store';
+import { Student } from 'src/app/core/models/Student.model';
 
 @Component({
   selector: 'app-chat-room',
@@ -16,13 +18,17 @@ import * as SockJS from 'sockjs-client';
 })
 export class ChatRoomComponent {
   stompClient: any;
+  student$: any;
 
-  constructor(private fb: FormBuilder,private messageSer:MessageService,private partServ:ParticipationService,private salleServ:SalleService,private ActivatedRoute :ActivatedRoute,private route :Router){}
+  constructor(private messageSer:MessageService,private partServ:ParticipationService,private salleServ:SalleService,private ActivatedRoute :ActivatedRoute,private route :Router,private store: Store<{ student: Student }>){
+    this.student$ = store.select('student');
+  }
   
-  myId:number= 1;
+  myId:number;
   idRoom:number;
   ngOnInit(): void {
-    this.findParticipatesByStud(this.myId,"in");
+    this.myId = this.student$.actionsObserver._value.code;
+    this.findParticipatesByStud(this.myId, 'in');
     this.idRoom=this.ActivatedRoute.snapshot.params['idRoom'];
     this.getRoom(this.idRoom);
     this.getMessagesByRoom(this.idRoom);

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -24,12 +24,15 @@ import { NavbarStudentComponent } from './modules/student/components/navbar-stud
 import { AssignmentStudentComponent } from './modules/student/components/assignment-student/assignment-student.component';
 import { ResultStudentComponent } from './modules/student/components/result-student/result-student.component';
 import { QuizStudentComponent } from './modules/student/components/quiz-student/quiz-student.component';
-import { StoreModule } from '@ngrx/store';
 import { SallesComponent } from './modules/student/components/salles/salles.component';
 import { ChatRoomComponent } from './modules/student/components/chat-room/chat-room.component';
 import { ChatComponent } from './modules/student/components/chat/chat.component';
 import { LoginComponent } from './modules/student/components/login/login.component';
 
+
+import { StoreModule } from '@ngrx/store';
+import { studentReducer } from './core/store/reducers/student.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,8 @@ import { LoginComponent } from './modules/student/components/login/login.compone
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({ student: studentReducer }),
+    StoreDevtoolsModule.instrument({ logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]
