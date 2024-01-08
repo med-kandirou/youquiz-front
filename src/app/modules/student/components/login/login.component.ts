@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Student } from 'src/app/core/models/Student.model';
 import { StudentService } from 'src/app/core/services/student.service';
-
 import { login } from 'src/app/core/store/actions/student.actions';
 
 @Component({
@@ -33,11 +31,12 @@ export class LoginComponent implements OnInit{
 
   login() {
     this.stdServ.login(this.loginForm.value).subscribe((data:any)=>{
-      //console.log(data);
       this.store.dispatch(login(data));
+      this.store.select('student').subscribe(data=>{
+        console.log(data.code)
+      })
       this._router.navigate(['student/chat'])
     })
   }
-
 
 }
